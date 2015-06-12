@@ -1,0 +1,10 @@
+<h1>{{eval.title}}</h1>
+
+<p>Commisioned by: {{eval.commissioner}}</p>
+
+<ul>{{#each eval.structuredSample.webpage}}
+	<li>{{description}} ({{description}})</li>
+{{/each}}{{#each eval.randomSample.webpage}}
+	<li>{{description}} ({{description}})</li>
+{{/each}}</ul>
+
