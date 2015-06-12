@@ -1,0 +1,19 @@
+{
+  "name": "earl-reporter",
+  "version": "0.0.0",
+  "description": "A basic report generator for EARL",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AccessibilityNL/earl-reporter.git"
+  },
+  "author": "Wilco Fiers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AccessibilityNL/earl-reporter/issues"
+  },
+  "homepage": "https://github.com/AccessibilityNL/earl-reporter"
+}
