@@ -1,19 +1,28 @@
 {
   "name": "earl-reporter",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A basic report generator for EARL",
-  "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/AccessibilityNL/earl-reporter.git"
   },
   "author": "Wilco Fiers",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/AccessibilityNL/earl-reporter/issues"
   },
-  "homepage": "https://github.com/AccessibilityNL/earl-reporter"
+  "homepage": "https://github.com/AccessibilityNL/earl-reporter",
+  "private": true,
+  "dependencies": {
+    "body-parser": "~1.12.4",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.12.4",
+    "jade": "~1.9.2",
+    "morgan": "~1.5.3",
+    "serve-favicon": "~2.2.1"
+  }
 }
