@@ -59,40 +59,47 @@ jQuery(function ($) {
 
 
         $.get(tplPath).done(function (templateString) {
+            var jsonSource = JSON.parse($('#in').val());
+
+            earlReporter.createReport(templateString, jsonSource,
+            function (err, htmlReport) {
+                var out = (htmlReport ? "Client said:\n" + htmlReport: err.toString());
+                $('#out').val(out);
+            });
+
+
+
             // Parse the JSON and put it in the template
-            var template = Handlebars.compile(templateString);
-            var input = JSON.parse(
-                $('#in').val()
-            );
+            // var template = Handlebars.compile(templateString);
 
-            try {
-                jsonld.compact(input, context, function (err, jsonld) {
-                    var templContent = {
-                        eval: null,
-                        persons: [],
-                        principles: wr20specData
-                    };
+            // try {
+            //     jsonld.compact(input, context, function (err, jsonld) {
+            //         var templContent = {
+            //             eval: null,
+            //             persons: [],
+            //             principles: wr20specData
+            //         };
 
-                    jsonld['@graph'].forEach(function (obj) {
-                        if (obj.type === 'evaluation') {
-                            templContent.eval = obj;
-                        } else {
-                            templContent.persons.push(obj);
-                        }
-                    });
+            //         jsonld['@graph'].forEach(function (obj) {
+            //             if (obj.type === 'evaluation') {
+            //                 templContent.eval = obj;
+            //             } else {
+            //                 templContent.persons.push(obj);
+            //             }
+            //         });
 
-                    templContent.principles = buildSpec(templContent.eval.auditResult,
-                                                        wr20specData);
+            //         templContent.principles = buildSpec(templContent.eval.auditResult,
+            //                                             wr20specData);
 
-                    $('#out').val(
-                        "Client said:\n" +
-                        template(templContent)
-                    );
-                });
+            //         $('#out').val(
+            //             "Client said:\n" +
+            //             template(templContent)
+            //         );
+            //     });
 
-            } catch (e) {
-                $('#out').val(input);
-            }
+            // } catch (e) {
+            //     $('#out').val(input);
+            // }
 
         });
     });
