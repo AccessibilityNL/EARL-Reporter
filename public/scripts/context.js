@@ -11,6 +11,7 @@
       "wcag20": "http://www.w3.org/TR/WCAG20/#",
       "earl": "http://www.w3.org/ns/earl#",
       "dct": "http://purl.org/dc/terms/",
+      "foaf": "http://xmlns.com/foaf/spec/#",
       "reporter": "https://github.com/w3c/wcag-em-report-tool/blob/master/dataformat.md#",
       "conformanceTarget": {
         "id": "step1b",

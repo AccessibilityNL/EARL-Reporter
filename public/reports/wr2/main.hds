@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<title>Webrichtlijnen 2 inspectie {{eval.evaluationScope.website.homepage}}</title>
+		
+    <base href="http://bo.accessibility.nl/rapport-assets/">
+    
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="normalize.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="rapport.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="print.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="lib/awesomizr.css" type="text/css" />
+    
+    <script type="text/javascript" src="lib/awesomizr.js"></script>
+	</head>
+	<body>
+		<section id="voorblad">
+			<img alt="Het logo van Stichting Accessibility" src="img/acc-logo.png" id="logo" />
+	
+			<h1 class="center" id="titel">Webrichtlijnen 2 inspectie {{link eval.evaluationScope.website.dct:homepage}} - niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</span></h1>
+	
+			<footer>
+				<img alt="Het logo van W3C met de tekst 'member'" src="img/w3c-member.png" id="w3c" class="left" />
+		
+				<p class="right">Utrecht, {{dutchDate eval.date}}</p>
+				<p class="right">Stichting Accessibility</p>
+				<p class="right">{{#each persons}}{{name}}{{#unless @last}}, {{/unless}}{{/each}} <!-- {{eval.creator}} --></p>
+				<p class="right">Webrichtlijnen 2 inspectie {{link eval.evaluationScope.website.dct:homepage}} - niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</p>
+				<p class="right">Waarmerk <a href="http://www.drempelvrij.nl">Drempelvrij</a>, rapportversie {{eval.version}}</p>
+			</footer>
+		</section>
+
+		<section id="toc"></section>
+
+		<section>
+			<h2 id="inleiding">Inleiding</h2>
+	
+			<p>Dit rapport beschrijft in hoeverre uw website voldoet aan Webrichtlijnen versie 2. Het onderzoek is uitgevoerd volgens de richtlijnen van het Waarmerk drempelvrij.nl, het Nederlandse kwaliteitsmerk voor toegankelijke websites.
+Webrichtlijnen versie 2 definieert hoe je webcontent betekenisvoller, beter bruikbaar, beter uitwisselbaar, duurzamer en toegankelijker maakt voor verschillende bezoekers, browsers, zoekmachines en apparaten (mobiele telefoons). Dat is van belang voor uw bezoekers, maar ook voor uzelf.</p>
+      <p>Binnen Webrichtlijnen versie 2 spelen de Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) 2.0 een belangrijke rol. De Webrichtlijnen omvatten deze specificatie van het World Wide Web Consortium (W3C) volledig. Webrichtlijnen versie 2 is echter breder en bevat naast toegankelijkheidsrichtlijnen ook richtlijnen met betrekking tot kwaliteit, zoekmachine-optimalisatie en gebruiksvriendelijkheid.</p>
+      <p>Webrichtlijnen versie 2 is opgebouwd uit verschillende onderdelen. De WCAG 2.0 richtlijnen zijn opgedeeld in vier principes. De Webrichtlijnen versie 2 voegt hier één principe (Universeel) met bijbehorende richtlijnen aan toe. Elke richtlijn is vervolgens opgedeeld in één of meerdere meetbare succescriteria. Omdat WCAG 2.0 techniek- onafhankelijk is opgesteld kan hiermee de toegankelijkheid van alle content op het web worden gemeten.</p>
+      <p>In dit rapport is de beschrijving van enkele succescriteria ingekort. Volledige beschrijvingen zijn te vinden in de Webrichtlijnen 2 norm. De koppen van de succescriteria zijn een link naar het desbetreffende succescriterium. Hoewel deze norm duidelijk genoeg is om onderzoeken goed te kunnen uitvoeren, kan de beoordeling van succescriteria op detailniveau de komende tijd veranderen. Zo is het mogelijk dat door voortschrijdend inzicht iets dat nu is afgekeurd, bij een volgende inspectie wordt goedgekeurd en vice versa.</p>
+      <p>Heeft u naar aanleiding van dit rapport inhoudelijke vragen, dan kunt u contact met ons opnemen via: <a href="tel:+31302398270">030 - 2398270</a> of: <a href="mailto:toetsing@accessibility.nl">toetsing@accessibility.nl</a>. Vermeldt u hierbij alstublieft de naam van de inspecteur ({{eval.creator}}) en de datum van het onderzoek ({{dutchDate eval.date}}).</p>
+		</section>
+
+		<section>
+			<h2 id="onderzoeksgegevens">Onderzoeksgegevens</h2>
+	
+			<table>
+				<tbody>
+					<tr>
+						<th scope="row">Type rapport</th>
+						<td>Webrichtlijnen 2 niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</span> (incl. WCAG 2.0)</td>
+					</tr>
+					<tr>
+						<th scope="row">Rapport versie</th>
+						<td>{{eval.version}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Opdrachtgever</th>
+						<td>{{eval.commissioner}}</td>
+					</tr>
+          <tr>
+            <th scope="row">Onderzoeksdatum</th>
+            <td>{{dutchDate eval.date}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Onderzoeker</th>
+            <td>{{eval.creator}}</td>
+          </tr>
+				</tbody>
+			</table>
+	
+			<h3 id="onderzoekscores">Onderzoekscores</h3>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th class="center">Niveau A</th>
+						<th class="center">Niveau AA</th>
+						<th class="center">Totaal</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">Waarneembaar</th>
+						<td class="center">9 / 9</td>
+						<td class="center">5 / 5</td>
+						<td class="center">12 / 14</td>
+					</tr>
+					<tr>
+						<th scope="row">Principe 2</th>
+						<td class="center">9 / 9</td>
+						<td class="center">5 / 5</td>
+						<td class="center">12 / 14</td>
+					</tr>
+					<tr>
+						<th scope="row">Principe 3</th>
+						<td class="center">9 / 9</td>
+						<td class="center">5 / 5</td>
+						<td class="center">12 / 14</td>
+					</tr>
+					<tr>
+						<th scope="row">Universeel</th>
+						<td class="center">9 / 9</td>
+						<td class="center">5 / 5</td>
+						<td class="center">12 / 14</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<th scope="row">Totaal</th>
+					<td class="center">9 / 9</td>
+					<td class="center">5 / 5</td>
+					<td class="center">12 / 14</td>
+				</tfoot>
+			</table>
+	
+			<h3>Scope van het onderzoek</h3>
+			<ul>
+        {{list eval.evaluationScope.website.siteScope}}
+      </ul>
+	
+			<p>Tussen haken staat de motivering om een gedeelte al dan niet mee te nemen. Zie voor
+meer informatie, hoofdstuk 2 van de evaluatiemethode.</p>
+	
+			<h3>Aantal pagina's van de steekproef</h3>
+			<p>{{count eval.structuredSample.webpage eval.randomSample.webpage}} (zie bijlage 1 voor de volledige steekproef)</p>
+	    
+      <h3>Inspectiemethode</h3>
+      <p>Deze inspectie is uitgevoerd op basis van de evaluatiemethode ({{link 'http://www.drempelvrij.nl/waarmerk-2/wcag-20/evaluatiedocument'}}).</p>
+      
+			<h3>Toegepaste norm</h3>
+			<p>Webrichtlijnen versie 2 ({{link 'http://versie2.webrichtlijnen.nl/norm/20110701'}}).</p>
+      
+      <h3>Gebruikte technieken</h3>
+      <p>Er is bij dit onderzoek vanuit gegaan dat alle door W3C uitgebrachte technieken ondersteund zijn door toegankelijkheid en dus gebruikt mogen worden. Zie: {{link 'http://www.w3.org/TR/2014/NOTE-WCAG20-TECHS-20140311/'}}.</p>
+
+      <p>De technieken voor het principe Universeel zijn te vinden op: {{link 'http://versie2.webrichtlijnen.nl/techniek/'}}.</p>
+      
+      <h3>User Agents (web browsers)</h3>
+      <p>Bij dit onderzoek zijn de volgende webbrowsers gebruikt:</p>
+      <ul>{{list eval.userAgents}}</ul>
+		</section>
+
+		<section>
+			<h2>Samenvatting</h2>
+	
+			{{html eval.summary}}
+		</section>
+
+		<section>
+			<h2 id="principe1">Principe 1: Waarneembaar</h2>
+	
+			<p>Bla bla bla</p>
+	
+			<h3 id="richtlijn1-1">Richtlijn 1.1: Tekstalternatieven</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+			<h4><a href="http://versie2.webrichtlijnen.nl/documentatie/1.1.1/" target="_blank">Succescriterium 1.1.1: Niet-tekstuele content (niveau A)</a></h4>
+	
+			<p>Bla bla bla</p>
+	
+			<h5><img alt="" src="img/fail.png" class="left" /> De onderzochte set webpagina's <em>voldoet niet</em> aan dit successcriterium. De volgende problemen zijn gevonden:</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+	
+			<h5><img alt="" src="img/info.png" class="left"> Uitleg van successcriterium 1.1.1</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+	
+			<h3 id="richtlijn1-2">Richtlijn 1.2: Op tijd gebaseerde media</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+			<h4><a href="http://versie2.webrichtlijnen.nl/documentatie/1.2.1/" target="_blank">Succescriterium 1.2.1: Naam (niveau)</a></h4>
+	
+			<p>Bla bla bla</p>
+	
+			<h5><img alt="" src="img/success.png" class="left" /> De onderzochte set webpagina's <em>voldoet</em> aan dit successcriterium.</h5>
+			<p>Afdoende technieken bij dit succescriterium zijn gebruikt om te voldoen.</p>
+	
+			<h5><img alt="" src="img/info.png" class="left"> Uitleg van successcriterium 1.2.1</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+	
+			<h4><a href="http://versie2.webrichtlijnen.nl/documentatie/1.2.2/" target="_blank">Succescriterium 1.2.2: Naam (niveau)</a></h4>
+	
+			<h5><img alt="" src="img/success.png" class="left" /> De onderzochte set webpagina's <em>voldoet</em> aan dit successcriterium.</h5>
+			<p>Geen van de technieken bij dit succescriterium is van toepassing.</p>
+	
+			<h5><img alt="" src="img/info.png" class="left"> Uitleg van successcriterium 1.2.2</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2 id="principe2">Principe 2: Titel</h2>
+	
+			<p>Bla bla bla</p>
+	
+			<h3 id="richtlijn2-1">Richtlijn 2.1: Titel</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+			<h4><a href="http://versie2.webrichtlijnen.nl/documentatie/2.1.1/" target="_blank">Succescriterium 2.1.1: Titel (niveau A)</a></h4>
+	
+			<p>Bla bla bla</p>
+	
+			<h5><img alt="" src="img/fail.png" class="left" /> De onderzochte set webpagina's <em>voldoet niet</em> aan dit successcriterium. De volgende problemen zijn gevonden:</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+	
+			<h5><img alt="" src="img/info.png" class="left"> Uitleg van successcriterium 1.1.1</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+	
+			<h3 id="richtlijn2-2">Richtlijn 2.2: Titel</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+			<h4><a href="http://versie2.webrichtlijnen.nl/documentatie/2.2.1/" target="_blank">Succescriterium 2.2.1: Naam (niveau)</a></h4>
+	
+			<p>Bla bla bla</p>
+	
+			<h5><img alt="" src="img/success.png" class="left" /> De onderzochte set webpagina's <em>voldoet</em> aan dit successcriterium.</h5>
+			<p>Afdoende technieken bij dit succescriterium zijn gebruikt om te voldoen.</p>
+	
+			<h5><img alt="" src="img/info.png" class="left"> Uitleg van successcriterium 1.2.1</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+	
+			<h4><a href="http://versie2.webrichtlijnen.nl/documentatie/2.2.2/" target="_blank">Succescriterium 2.2.2: Naam (niveau)</a></h4>
+	
+			<h5><img alt="" src="img/success.png" class="left" /> De onderzochte set webpagina's <em>voldoet</em> aan dit successcriterium.</h5>
+			<p>Geen van de technieken bij dit succescriterium is van toepassing.</p>
+	
+			<h5><img alt="" src="img/info.png" class="left"> Uitleg van successcriterium 1.2.2</h5>
+			<ul>
+				<li>
+					Bla bla bla
+				</li>
+				<li>
+					Bla bla bla
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2 id="bijlage1">Bijlage 1: Titel</h2>
+	
+			<ul>
+				<li>
+					<a href="url">url</a>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2 id="bijlage2">Bijlage 2: Titel</h2>
+	
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+			<h3 id="belangrijkste_activiteiten">Belangrijkste activiteiten</h3>
+			<ul>
+				<li>Bla bla</li>
+			</ul>
+		</section>
+    
+    <script>
+      Awesomizr.createTableOfContents({
+        elements:['h2', 'h3'], 
+        insertiontarget:'#toc', 
+        insertiontype:'afterbegin', 
+        toctitle:'Inhoudsopgave', 
+        disabledocumenttitle:true
+      });
+    </script>
+	</body>
+</html>
