@@ -8,3 +8,23 @@
 	<li>{{description}} ({{description}})</li>
 {{/each}}</ul>
 
+
+{{#each principles}}{{#if hasResult}}
+<div>
+  <h1>{{number}}. {{title}}: {{description}}</h1>
+  {{#each guidelines}}{{#if hasResult}}
+  <div>
+  	<h2>{{number}}. {{title}}: {{description}}</h2>
+  	  {{#each criteria}}{{#if hasResult}}
+	  <div>
+	  	<h2>{{number}}. {{title}}: {{description}}</h2>
+	  	<p>{{assertion.result.outcome}}: {{assertion.result.description}}</p>
+	  	{{#each uitleg}}
+		<div>{{{this}}}</div>
+	  	{{/each}}
+	  </div>
+	  {{/if}}{{/each}}
+  </div>
+  {{/if}}{{/each}}
+</div>
+{{/if}}{{/each}}

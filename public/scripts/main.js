@@ -1,45 +1,63 @@
 jQuery(function ($) {
-    var context = {
-        "@vocab": "http://www.w3.org/TR/WCAG-EM/#",
-        "wcag20": "http://www.w3.org/TR/WCAG20/#",
-        "earl": "http://www.w3.org/ns/earl#",
-        "dct": "http://purl.org/dc/terms/",
-        "reporter": "https://github.com/w3c/wcag-em-report-tool/blob/master/dataformat.md#",
-        "conformanceTarget": {
-          "id": "step1b",
-          "type": "id"
-        },
-        "evaluationScope": {"id": "step1"},
-        "accessibilitySupportBaseline": {"id": "step1c"},
-        "additionalEvalRequirement": {"id": "step1d"},
-        "siteScope": {"id": "step1a"},
-        "commonPages": {"id": "step2a"},
-        "essentialFunctionality": {"id": "step2b"},
-        "pageTypeVariety": {"id": "step2c"},
-        "otherRelevantPages": {"id": "step2e"},
-        "structuredSample": {"id": "step3a"},
-        "randomSample": {"id": "step3b"},
-        "specifics": {"id": "step5b"},
-        "auditResult": {"id": "step4"},
-        "outcome": {"type": "id"},
-        "subject": {"type": "id"},
-        "assertedBy": {"type": "id"},
-        "testRequirement": {"type": "id"},
-        "creator": {"type": "id"},
-        "handle": "reporter:handle",
-        "description": "reporter:description",
-        "tested": "reporter:tested",
-        "id": "@id",
-        "type": "@type",
-        "title": "dct:title",
-        "hasPart": "dct:hasPart",
-        "specs": "@id",
-        "reliedUponTechnology": "wcag20:reliedupondef"
-    };
+    var context = window.context;
 
-    $('#transform').on('click', function () {
+    function buildSpec(auditResult, principles) {
+        // Create a map with the URI of all none empty assertions
+        var critResults = auditResult
+        .reduce(function (critResults, assert) {
+            if (assert.hasPart.length > 0 ||
+                assert.result.outcome !== 'earl:untested' ||
+                assert.result.description) {
+
+                critResults[assert.testRequirement] = assert;
+            }
+            return critResults;
+        }, {});
+
+        // Give a hasResult property to all principle / guideline / criterion
+        // Also add assertion to the criterion
+        principles.forEach(function (principle) {
+            principle.hasResult = principle.guidelines
+            .reduce(function (hasResult, guideline) {
+
+                guideline.hasResult = guideline.criteria
+                .reduce(function (hasResult, criterion) {
+
+                    criterion.hasResult = !!critResults[criterion.uri];
+                    if (criterion.hasResult) {
+                        criterion.assertion = critResults[criterion.uri];
+                    }
+                    return hasResult || criterion.hasResult;
+                }, false);
+
+                return hasResult || guideline.hasResult;
+            }, false);
+        });
+
+        return principles;
+    }
+
+
+    // Post to the server
+    $('#transform-server').on('click', function () {
+        $.ajax({
+            url: "build-report?template=default",
+            type: "POST",
+            data: $('#in').val(),
+            contentType : 'application/json',
+            dataType: "html"
+        }).done(function (data) {
+
+            $('#out').val("Server said:\n" + data);
+        });
+    });
+
+    // Build it client side
+    $('#transform-local').on('click', function () {
         // Load the template file
         var tplPath = 'reports/' + $('#template').val() + '/main.hds';
+
+
         $.get(tplPath).done(function (templateString) {
             // Parse the JSON and put it in the template
             var template = Handlebars.compile(templateString);
@@ -51,8 +69,10 @@ jQuery(function ($) {
                 jsonld.compact(input, context, function (err, jsonld) {
                     var templContent = {
                         eval: null,
-                        persons: []
+                        persons: [],
+                        principles: wr20specData
                     };
+
                     jsonld['@graph'].forEach(function (obj) {
                         if (obj.type === 'evaluation') {
                             templContent.eval = obj;
@@ -61,8 +81,13 @@ jQuery(function ($) {
                         }
                     });
 
-                    console.log(templContent);
-                    $('#out').val(template(templContent));
+                    templContent.principles = buildSpec(templContent.eval.auditResult,
+                                                        wr20specData);
+
+                    $('#out').val(
+                        "Client said:\n" +
+                        template(templContent)
+                    );
                 });
 
             } catch (e) {
