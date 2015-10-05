@@ -2,9 +2,9 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app   = require('../app');
 var debug = require('debug')('earl-reporter:server');
-var http = require('http');
+var http  = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -12,6 +12,7 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+console.log('Server started on port ' + port)
 
 /**
  * Create HTTP server.
