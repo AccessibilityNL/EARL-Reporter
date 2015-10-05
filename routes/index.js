@@ -3,10 +3,9 @@ var earlReporter = require('../public/scripts/earlReporter');
 var fs           = require('fs');
 var router       = express.Router();
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('index');
+  res.render('index');
 });
 
 router.post('/build-report', function(req, res) {

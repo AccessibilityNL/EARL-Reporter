@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 	<head>
-		<title>Webrichtlijnen 2 inspectie {{eval.evaluationScope.website.homepage}}</title>
+		<title>WCAG 2 inspectie {{eval.evaluationScope.website.homepage}}</title>
 		    
     <meta charset="utf-8" />
     
@@ -18,7 +18,7 @@
 		<section id="voorblad">
 			<img alt="Het logo van Stichting Accessibility" src="http://bo.accessibility.nl/rapport-assets/img/acc-logo.png" id="logo" />
 	
-			<h1 class="center" id="titel">Webrichtlijnen 2 inspectie {{link eval.evaluationScope.website.dct:homepage}} - niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</span></h1>
+			<h1 class="center" id="titel">WCAG 2.0 inspectie {{link eval.evaluationScope.website.dct:homepage}} - niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wcag20:level_' ''}}</span></h1>
 	
 			<footer>
 				<img alt="Het logo van W3C met de tekst 'member'" src="http://bo.accessibility.nl/rapport-assets/img/w3c-member.png" id="w3c" class="left" />
@@ -26,7 +26,7 @@
 				<p class="right">Utrecht, {{dutchDate eval.date}}</p>
 				<p class="right">Stichting Accessibility</p>
 				<p class="right">{{#each persons}}{{name}}{{#unless @last}}, {{/unless}}{{/each}} <!-- {{eval.creator}} --></p>
-				<p class="right">Webrichtlijnen 2 inspectie {{link eval.evaluationScope.website.dct:homepage}} - niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</p>
+				<p class="right">WCAG 2.0 inspectie {{link eval.evaluationScope.website.dct:homepage}} - niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wcag20:level_' ''}}</p>
 				<p class="right">Waarmerk <a href="http://www.drempelvrij.nl">Drempelvrij</a>, rapportversie {{eval.version}}</p>
 			</footer>
 		</section>
@@ -40,11 +40,14 @@
 		<section>
 			<h2 id="inleiding">Inleiding</h2>
 	
-			<p>Dit rapport beschrijft in hoeverre uw website voldoet aan Webrichtlijnen versie 2. Het onderzoek is uitgevoerd volgens de richtlijnen van het Waarmerk drempelvrij.nl, het Nederlandse kwaliteitsmerk voor toegankelijke websites.
-Webrichtlijnen versie 2 definieert hoe je webcontent betekenisvoller, beter bruikbaar, beter uitwisselbaar, duurzamer en toegankelijker maakt voor verschillende bezoekers, browsers, zoekmachines en apparaten (mobiele telefoons). Dat is van belang voor uw bezoekers, maar ook voor uzelf.</p>
-      <p>Binnen Webrichtlijnen versie 2 spelen de Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) 2.0 een belangrijke rol. De Webrichtlijnen omvatten deze specificatie van het World Wide Web Consortium (W3C) volledig. Webrichtlijnen versie 2 is echter breder en bevat naast toegankelijkheidsrichtlijnen ook richtlijnen met betrekking tot kwaliteit, zoekmachine-optimalisatie en gebruiksvriendelijkheid.</p>
-      <p>Webrichtlijnen versie 2 is opgebouwd uit verschillende onderdelen. De WCAG 2.0 richtlijnen zijn opgedeeld in vier principes. De Webrichtlijnen versie 2 voegt hier één principe (Universeel) met bijbehorende richtlijnen aan toe. Elke richtlijn is vervolgens opgedeeld in één of meerdere meetbare succescriteria. Omdat WCAG 2.0 techniek- onafhankelijk is opgesteld kan hiermee de toegankelijkheid van alle content op het web worden gemeten.</p>
+			<p>Dit rapport beschrijft in hoeverre uw website voldoet aan WCAG 2.0, niveau {{replace eval.evaluationScope.conformanceTarget 'wcag20:level_' ''}}. Het onderzoek is uitgevoerd volgens de richtlijnen van het Waarmerk drempelvrij.nl, het Nederlandse kwaliteitsmerk voor toegankelijke websites.</p>
+      
+      <p>WCAG staat voor Web Content Accessibility Guidelines. Dit zijn de internationale richtlijnen voor toegankelijkheid van webcontent. De richtlijnen zijn opgedeeld in vier principes. Elke richtlijn is vervolgens opgedeeld in één of meerdere meetbare succescriteria. Omdat WCAG 2.0 techniek-onafhankelijk is opgesteld kan hiermee de toegankelijkheid van alle content op het web worden gemeten.</p>
+
+      <p>De WCAG 2.0 richtlijnen zijn volledig opgenomen in de Nederlandse Webrichtlijnen 2 norm, die gebruikt wordt voor Waarmerk drempelvrij.nl onderzoeken. Hoewel deze norm ook nog een aantal extra kwaliteitsrichtlijnen bevat (onder het principe: Universeel), is alleen het WCAG 2.0 niveau {{replace eval.evaluationScope.conformanceTarget 'wcag20:level_' ''}} gedeelte gebruikt voor dit onderzoek.</p>
+      
       <p>In dit rapport is de beschrijving van enkele succescriteria ingekort. Volledige beschrijvingen zijn te vinden in de Webrichtlijnen 2 norm. De koppen van de succescriteria zijn een link naar het desbetreffende succescriterium. Hoewel deze norm duidelijk genoeg is om onderzoeken goed te kunnen uitvoeren, kan de beoordeling van succescriteria op detailniveau de komende tijd veranderen. Zo is het mogelijk dat door voortschrijdend inzicht iets dat nu is afgekeurd, bij een volgende inspectie wordt goedgekeurd en vice versa.</p>
+      
       <p>Heeft u naar aanleiding van dit rapport inhoudelijke vragen, dan kunt u contact met ons opnemen via: <a href="tel:+31302398270">030 - 2398270</a> of: <a href="mailto:toetsing@accessibility.nl">toetsing@accessibility.nl</a>. Vermeldt u hierbij alstublieft de naam van de inspecteur ({{firstPerson persons}}) en de datum van het onderzoek ({{dutchDate eval.date}}).</p>
 		</section>
 
@@ -57,7 +60,7 @@ Webrichtlijnen versie 2 definieert hoe je webcontent betekenisvoller, beter brui
 				<tbody>
 					<tr>
 						<th scope="row">Type rapport</th>
-						<td>Webrichtlijnen 2 niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</span> (incl. WCAG 2.0)</td>
+						<td>WCAG 2.0 niveau <span class="upper">{{replace eval.evaluationScope.conformanceTarget 'wr20:level_' ''}}</span></td>
 					</tr>
 					<tr>
 						<th scope="row">Rapport versie</th>
@@ -136,8 +139,6 @@ meer informatie, hoofdstuk 2 van de evaluatiemethode.</p>
       
       <h3>Gebruikte technieken</h3>
       <p>Er is bij dit onderzoek vanuit gegaan dat alle door W3C uitgebrachte technieken ondersteund zijn door toegankelijkheid en dus gebruikt mogen worden. Zie: {{link 'http://www.w3.org/TR/2014/NOTE-WCAG20-TECHS-20140311/'}}.</p>
-
-      <p>De technieken voor het principe Universeel zijn te vinden op: {{link 'http://versie2.webrichtlijnen.nl/techniek/'}}.</p>
       
       <h3>User Agents (web browsers)</h3>
       <p>Bij dit onderzoek zijn de volgende webbrowsers gebruikt:</p>

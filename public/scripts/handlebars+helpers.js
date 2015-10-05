@@ -10,6 +10,24 @@
 
 
     // search/replace in string
+    Handlebars.registerHelper('replace', function(text, search, replace) {
+      var text = Handlebars.escapeExpression(text),
+          search = Handlebars.escapeExpression(search),
+          replace = Handlebars.escapeExpression(replace),
+          SearchRegEx;
+  
+      /* see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters */
+      SearchRegEx = new RegExp(
+        search.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), 
+        'g'
+      );
+  
+      return new Handlebars.SafeString(
+        text.replace(SearchRegEx, replace)
+      );
+    });
+    
+    // convert US MySQL date to Dutch date as string
     // this might be an alternative: http://formatjs.io/handlebars/ - but we need to upgrade node to something higher than version 0.10
     Handlebars.registerHelper('dutchDate', function(input) {
       var months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
@@ -99,8 +117,43 @@
       );
       return new Handlebars.SafeString(html);
     });
-
-
+    
+    // return Dutch name for results
+    Handlebars.registerHelper('dutchResult', function(string) {
+      var result = Handlebars.escapeExpression(string);
+      var output = '';
+      
+      if(result === 'earl:passed' || result === 'earl:inapplicable') {
+        output = "De onderzochte set webpagina's voldoet aan dit succescriterium.";
+      } else if(result === 'earl:failed') {
+        output = "De onderzochte set webpagina's voldoet niet aan dit succescriterium.";
+      }
+      
+      return new Handlebars.SafeString(output);
+    });
+    
+    // dump variable to console
+    Handlebars.registerHelper('dump', function(input) {
+      
+      console.log(input);
+      
+      return true;
+    });
+    
+    // dump variable to console
+    Handlebars.registerHelper('firstPerson', function(persons) {
+      var name = null;
+      
+      if(typeof persons === 'object' && persons.length) {
+        ['http://xmlns.com/foaf/spec/#name', 'foaf:name', 'name'].forEach(function(val) {
+          if(val in persons[0]) {
+            name = persons[0][val];
+          }
+        });
+      }
+      
+      return new Handlebars.SafeString(name);
+    });
 
     if(_nodejs) {
         // export nodejs API

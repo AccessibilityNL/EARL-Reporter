@@ -10,7 +10,7 @@
     var Handlebars   = (_nodejs ? require('./handlebars+helpers') : window.HandlebarsWithHelpers);
     var jsonld       = (_nodejs ? require('./jsonld') : window.jsonld);
     var context      = (_nodejs ? require('./context') : window.context);
-    var wr20specData = (_nodejs ? require('./wr20specdata') : window.wr20specData);
+    var wr20specData = (_nodejs ? require('./wr20specData') : window.wr20specData);
 
 
     /**
@@ -48,7 +48,72 @@
                     templContent.eval.auditResult);
 
             templContent.principles = earlReporter.buildSpec(critResult, wr20specData);
-
+            
+            // make an object which contains total scores
+            templContent.scores = {sum: {success: 0, total: 0}, principles: {}};
+            
+            // loop through principles
+            templContent.principles.forEach(function(principle) {
+              if(principle.hasResult) {
+                // add principle to scores object
+                if(!(principle.title in templContent.scores.principles)) {
+                  templContent.scores.principles[principle.title] = {};
+                }
+                
+                // loop through guidelines
+                principle.guidelines.forEach(function(guideline) {
+                  if(guideline.hasResult) {
+                    // loop through criteria
+                    guideline.criteria.forEach(function(criterium) {
+                      var level;
+                      
+                      if(criterium.hasResult) {
+                        level = criterium.level.split('_').pop().toUpperCase();
+                                                
+                        // add sum to principle object
+                        if(!('sum' in templContent.scores.principles[principle.title])) {
+                          templContent.scores.principles[principle.title]['sum'] = {
+                            success: 0,
+                            total: 0
+                          };
+                        }
+                        
+                        // add level to principle object
+                        if(!(level in templContent.scores.principles[principle.title])) {
+                          templContent.scores.principles[principle.title][level] = {
+                            success: 0,
+                            total: 0
+                          };
+                        }
+                        
+                        // add level to total sum
+                        if(!(level in templContent.scores['sum'])) {
+                          templContent.scores['sum'][level] = {
+                            success: 0,
+                            total: 0
+                          };
+                        }
+                        
+                        // add one to success if criterium hasn't failed
+                        if(criterium.assertion.result.outcome !== 'earl:failed') {
+                          templContent.scores.principles[principle.title][level].success += 1;
+                          templContent.scores.principles[principle.title]['sum'].success += 1;
+                          templContent.scores['sum'][level].success += 1;
+                          templContent.scores['sum'].success += 1;
+                        }
+                        
+                        // add one to total
+                        templContent.scores.principles[principle.title][level].total += 1;
+                        templContent.scores.principles[principle.title]['sum'].total += 1;
+                        templContent.scores['sum'][level].total += 1;
+                        templContent.scores['sum'].total += 1;
+                      }
+                    });
+                  }
+                });
+              }
+            });
+                                    
             return templContent;
         },
 
